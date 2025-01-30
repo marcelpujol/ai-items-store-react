@@ -1,0 +1,68 @@
+.message-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  color: white;
+  border-radius: .5rem;
+  
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  padding-bottom: .625rem;
+  padding-top: .625rem;
+
+  &.user-msg {
+    position: relative;
+    background-color: var(--light-color);
+    align-self: flex-end;
+  }
+
+  &.assistant-msg {
+    position: relative;
+    background-color: var(--very-light-color);
+    color: var(--primary-color);
+    align-self: flex-start;
+  }
+
+  .chat-icon {
+    &.assistant-icon {
+      position: absolute;
+      top: -5px;
+      left: -15px;
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.2rem;
+      border-radius: 20rem;
+    }
+  }
+
+  .items-result {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+
+  }
+}
+
+.messageContainer.assistant-msg > * {
+  margin: 0rem; /* Remove default margin from Markdown elements */
+  padding: 0.5rem; /* Ensure no unwanted padding from child elements */
+}
+
+.messageContainer.assistant-msg > ol {
+  padding-left: 1.5rem; /* Adjust padding for nested lists */
+}
+
+.messageContainer.assistant-msg > ol > li > ul {
+  list-style: none; /* Optional: Remove bullet points if needed */
+}
+
+.messageContainer.assistant-msg > ol > li {
+  padding-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-top: 1px solid var(--accent-color);
+}
+

@@ -1,0 +1,73 @@
+.store-statistics-container {
+  background-color: var(--white-color);
+  border-radius: 16px;
+  padding: 2rem;
+  font-family: "Outfit", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .statistics-title {
+    font-size: 2rem;
+    color: var(--warm-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .statistics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+
+  .statistic-card {
+    background-color: var(--light-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 10rem;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .statistic-content {
+      text-align: center;
+
+      label {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+      }
+
+      span {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--very-light-color);
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .store-statistics-container {
+    padding: 1.5rem;
+
+    .statistics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
