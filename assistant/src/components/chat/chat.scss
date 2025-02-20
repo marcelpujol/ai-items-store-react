@@ -37,6 +37,10 @@
 
 .motion-container {
   display: flex;
+
+  &.user {
+    justify-content: flex-end;
+  }  
 }
 
 // Add these styles to your existing SCSS file

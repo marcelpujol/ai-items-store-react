@@ -1,12 +1,7 @@
 import { convertToCoreMessages, streamText, tool } from "ai";
-import { openai } from "@ai-sdk/openai";
 import { bedrock } from "@ai-sdk/amazon-bedrock";
 import { z } from "zod";
-import {
-  OPEN_AI_MODEL,
-  AI_SYSTEM_PROMPT,
-  AMAZON_BEDROCK_MODEL,
-} from "../constants";
+import { AI_SYSTEM_PROMPT, AMAZON_BEDROCK_MODEL } from "../constants";
 import {
   DeletedItemSchema,
   ItemSchema,
@@ -14,7 +9,6 @@ import {
 } from "../schemas";
 import itemsService from "../services/itemsService";
 import { v4 as uuidv4 } from "uuid";
-import { PermissionError } from "../models/permissionError";
 
 //API functions
 const API_SERVICE = {
@@ -38,9 +32,6 @@ const API_SERVICE = {
     return result;
   },
   deleteItem: async (deletedItem: z.infer<typeof DeletedItemSchema>) => {
-    // throw new PermissionError(
-    //   "Permission denied: You don't have access to delete items."
-    // );
     const result = await itemsService.deleteItem(deletedItem.id);
     return result;
   },

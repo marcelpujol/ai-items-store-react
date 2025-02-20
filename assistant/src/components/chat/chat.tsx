@@ -2,12 +2,11 @@ import { useChat } from "ai/react";
 import Input from "../input/input";
 import Message from "../message/message";
 import Error from "../error/error";
-import { useEffect, useRef } from "react";
-import "./chat.scss";
 import { motion, AnimatePresence } from "framer-motion";
+import useChatScroll from "../../hooks/useChatScroll";
+import "./chat.scss";
 
 export default function Chat() {
-  const chatRef = useRef<HTMLDivElement>(null);
   const {
     id,
     messages,
@@ -27,25 +26,7 @@ export default function Chat() {
       }
     },
   });
-
-  const scrollToBottom = () => {
-    if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
-    }
-  };
-
-  useEffect(() => {
-    const timeout = setTimeout(scrollToBottom, 50);
-    return () => clearTimeout(timeout);
-  }, [messages]);
-
-  useEffect(() => {
-    const observer = new MutationObserver(scrollToBottom);
-    if (chatRef.current) {
-      observer.observe(chatRef.current, { childList: true, subtree: true });
-    }
-    return () => observer.disconnect();
-  }, []);
+  const chatRef = useChatScroll([messages]);
 
   return (
     <motion.div
@@ -58,7 +39,7 @@ export default function Chat() {
         <AnimatePresence>
           {messages.map((message) => (
             <motion.div
-              className="motion-container"
+              className={`motion-container ${message.role}`}
               key={message.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
